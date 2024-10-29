@@ -1,5 +1,5 @@
 num_of_dec_vars = int(input("How many dec. vars are there?"))
-answer = [-1] * num_of_dec_vars
+basis = [-1] * num_of_dec_vars
 
 #construct objective function
 obj_function = []
@@ -55,7 +55,7 @@ def solve(obj_function, inequalities, index_of_smallest_element):
     pivot_element_position = determine_pivot_element(inequalities, index_of_smallest_element)
     pivot_element = inequalities[pivot_element_position[0]][pivot_element_position[1]]
 
-    answer[pivot_element_position[1]] = pivot_element_position[0]
+    basis[pivot_element_position[1]] = pivot_element_position[0]
 
     #make pivot element's row adjustments
     for i in range(len(inequalities[pivot_element_position[0]])):
@@ -101,10 +101,10 @@ check_further_optimize(obj_function, inequalities)
 
 for i in range(num_of_dec_vars):
     print("Value of X" + str(i + 1)+" is ",end="" )
-    if answer[i] == -1:
+    if basis[i] == -1:
         print(0)
         continue
-    print(inequalities[answer[i]][-1])
+    print(inequalities[basis[i]][-1])
 print("Optimum value is "+ str(obj_function[-1]))
 
 
